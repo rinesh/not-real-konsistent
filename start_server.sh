@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "🎬 Starting Real-Me Model Test Server..."
+echo "======================================"
+echo ""
+echo "✅ Dependencies installed"
+echo "✅ Flask app configured"
+echo "✅ HTML UI ready"
+echo ""
+echo "🚀 Starting server on http://localhost:5000"
+echo ""
+echo "📋 Instructions:"
+echo "1. Open http://localhost:5000 in your browser"
+echo "2. Enter your Replicate API token (get it from: https://replicate.com/account/api-tokens)"
+echo "3. Enter a prompt (e.g., 'sunset', 'mountain', 'ocean')"
+echo "4. Optionally upload an image for editing mode"
+echo "5. Click 'Generate Video' and wait for processing"
+echo ""
+echo "⚠️  Note: This will call real Replicate models and consume API credits"
+echo ""
+echo "Press Ctrl+C to stop the server"
+echo ""
+
+python app.py

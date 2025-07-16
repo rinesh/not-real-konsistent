@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Me Model Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input[type="text"], input[type="password"], select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .file-input {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .file-input input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 12px 16px;
+            border: 2px dashed #e1e5e9;
+            border-radius: 10px;
+            text-align: center;
+            color: #666;
+            transition: all 0.3s;
+        }
+        
+        .file-input:hover .file-input-label {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        
+        .result.error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        
+        .media-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .media-container img, .media-container video {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .download-btn {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .download-btn:hover {
+            background: #218838;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .warning strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 Real-Me Model Test</h1>
+        <p class="subtitle">Generate realistic videos with AI using FLUX + SeeDANCE</p>
+        
+        <div class="warning">
+            <strong>⚠️ API Token Required</strong>
+            This local test requires your Replicate API token to call the underlying models. 
+            Get your token at: <a href="https://replicate.com/account/api-tokens" target="_blank">replicate.com/account/api-tokens</a>
+        </div>
+        
+        <form id="predictForm">
+            <div class="form-group">
+                <label for="api_token">Replicate API Token *</label>
+                <input type="password" id="api_token" name="api_token" placeholder="r8_..." required>
+            </div>
+            
+            <div class="form-group">
+                <label for="prompt">Prompt *</label>
+                <textarea id="prompt" name="prompt" rows="3" placeholder="Enter a short description (1-2 words work best)" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="image">Input Image (optional)</label>
+                <div class="file-input">
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <label class="file-input-label" for="image">
+                        📁 Click to select image (optional - for editing mode)
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="duration">Duration</label>
+                    <select id="duration" name="duration">
+                        <option value="5">5 seconds</option>
+                        <option value="10">10 seconds</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resolution">Resolution</label>
+                    <select id="resolution" name="resolution">
+                        <option value="1080p">1080p</option>
+                        <option value="480p">480p</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aspect_ratio">Aspect Ratio</label>
+                    <select id="aspect_ratio" name="aspect_ratio">
+                        <option value="16:9">16:9 (Landscape)</option>
+                        <option value="9:16">9:16 (Portrait)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn" id="generateBtn">🚀 Generate Video</button>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+            <p><small>This may take 1-3 minutes depending on the models</small></p>
+        </div>
+        
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        document.getElementById('predictForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const generateBtn = document.getElementById('generateBtn');
+            const loading = document.getElementById('loading');
+            const result = document.getElementById('result');
+            
+            // Show loading state
+            generateBtn.disabled = true;
+            loading.style.display = 'block';
+            result.style.display = 'none';
+            
+            try {
+                let response;
+                
+                // Check if image is provided
+                const imageFile = formData.get('image');
+                if (imageFile && imageFile.size > 0) {
+                    // Use form data for image upload
+                    response = await fetch('/predict_with_image', {
+                        method: 'POST',
+                        body: formData
+                    });
+                } else {
+                    // Use JSON for text-only
+                    const data = {
+                        prompt: formData.get('prompt'),
+                        duration: formData.get('duration'),
+                        resolution: formData.get('resolution'),
+                        aspect_ratio: formData.get('aspect_ratio'),
+                        api_token: formData.get('api_token')
+                    };
+                    
+                    response = await fetch('/predict', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                }
+                
+                const responseData = await response.json();
+                
+                if (responseData.success) {
+                    result.className = 'result success';
+                    result.innerHTML = `
+                        <h3>✅ Success!</h3>
+                        <p><strong>Formatted Prompt:</strong> ${responseData.formatted_prompt}</p>
+                        <p><strong>Generated:</strong> ${responseData.timestamp}</p>
+                        
+                        <div class="media-container">
+                            <h4>Generated Image:</h4>
+                            <img src="/download/${responseData.image_path.split('/').pop()}" alt="Generated Image">
+                            <br>
+                            <a href="/download/${responseData.image_path.split('/').pop()}" class="download-btn">📥 Download Image</a>
+                            
+                            <h4 style="margin-top: 20px;">Generated Video:</h4>
+                            <video controls>
+                                <source src="/download/${responseData.video_path.split('/').pop()}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <br>
+                            <a href="/download/${responseData.video_path.split('/').pop()}" class="download-btn">📥 Download Video</a>
+                        </div>
+                    `;
+                } else {
+                    result.className = 'result error';
+                    result.innerHTML = `
+                        <h3>❌ Error</h3>
+                        <p>${responseData.error}</p>
+                        <p><small>Timestamp: ${responseData.timestamp}</small></p>
+                    `;
+                }
+                
+                result.style.display = 'block';
+                
+            } catch (error) {
+                result.className = 'result error';
+                result.innerHTML = `
+                    <h3>❌ Network Error</h3>
+                    <p>Failed to connect to the server: ${error.message}</p>
+                `;
+                result.style.display = 'block';
+            } finally {
+                // Hide loading state
+                generateBtn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+        
+        // Update file input label when file is selected
+        document.getElementById('image').addEventListener('change', function(e) {
+            const label = document.querySelector('.file-input-label');
+            if (e.target.files.length > 0) {
+                label.textContent = `📁 Selected: ${e.target.files[0].name}`;
+            } else {
+                label.textContent = '📁 Click to select image (optional - for editing mode)';
+            }
+        });
+    </script>
+</body>
+</html>
