@@ -171,8 +171,17 @@ def predict_with_image():
 
 @app.route('/download/<filename>')
 def download_file(filename):
+    # Validate filename to prevent path traversal
+    if '..' in filename or '/' in filename or '\\' in filename:
+        return "Invalid filename", 400
+    
+    # Only allow specific file extensions
+    allowed_extensions = {'.png', '.jpg', '.jpeg', '.mp4', '.webp'}
+    if not any(filename.lower().endswith(ext) for ext in allowed_extensions):
+        return "Invalid file type", 400
+    
     file_path = os.path.join(predictor.temp_dir, filename)
-    if os.path.exists(file_path):
+    if os.path.exists(file_path) and os.path.isfile(file_path):
         return send_file(file_path, as_attachment=True)
     else:
         return "File not found", 404

@@ -144,6 +144,33 @@ ENV/
 env.bak/
 venv.bak/
 
+# Security and secrets
+*.pem
+*.key
+*.cert
+*.crt
+.env.local
+.env.production
+.env.development
+secrets/
+credentials/
+config.secret.yaml
+
+# Replicate specific
+.replicate/
+REPLICATE_API_TOKEN
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
 # Spyder project settings
 .spyderproject
 .spyproject
