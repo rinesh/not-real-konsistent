@@ -1,12 +1,13 @@
-# Not-Real-Konsistent: Realistic Video Generator
+# Not-Real-Konsistent: Consistent Character Video Generator
 
-Transform your ideas into realistic videos using advanced AI. This Replicate model creates authentic-looking videos by first generating or editing images based on your description, then animating them with realistic motion and style.
+Generate realistic videos with consistent character preservation. This Replicate model specializes in maintaining character and object consistency from reference images while creating authentic-looking animated videos. Perfect for creating videos where character identity needs to remain consistent throughout.
 
 ## 🎯 What it does
 
-This model creates realistic videos through a two-step process:
-1. **Image Creation**: Generates a new image from your text description OR edits your reference image
-2. **Video Animation**: Transforms the image into a natural-looking video with authentic motion
+This model excels at creating realistic videos while maintaining character consistency:
+1. **Consistent Character Generation**: When provided with a reference image, the model preserves character identity and features throughout the video
+2. **Flexible Scene Creation**: Generates new scenes and actions while keeping characters/objects consistent
+3. **Realistic Animation**: Transforms images into natural-looking videos with authentic motion
 
 ## 🚀 Try it Online
 
@@ -14,9 +15,10 @@ This model creates realistic videos through a two-step process:
 
 ## ✨ Features
 
-- **Flexible Image Input**: 
-  - Generate from text description alone
-  - Use a reference image to guide the generation
+- **Character Consistency**: 
+  - Maintains character/object identity from reference images
+  - Preserves key features and attributes throughout the video
+  - Perfect for creating consistent character animations
 - **Customizable Output**:
   - Duration: 5 or 10 second videos
   - Resolution: 480p or 1080p
@@ -28,8 +30,8 @@ This model creates realistic videos through a two-step process:
 
 | Parameter | Type | Description | Default |
 |-----------|------|-------------|---------|
-| `input_image` | File | Optional reference image to guide generation | None |
-| `prompt` | String | Describe the image you want to create | Required |
+| `input_image` | File | Optional reference image for character/object consistency | None |
+| `prompt` | String | Describe the scene/action (character consistency maintained from reference) | Required |
 | `duration` | Integer | Video length in seconds (5 or 10) | 5 |
 | `resolution` | String | Video quality (480p or 1080p) | 1080p |
 | `aspect_ratio` | String | Video format (16:9, 9:16, 1:1, etc.) | 16:9 |

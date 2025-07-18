@@ -1,7 +1,7 @@
 # Not-Real-Konsistent Model Development Notes
 
 ## Project Overview
-This is a Replicate pipeline model that creates realistic videos by combining image generation/editing with video animation. The model uses a three-stage pipeline to transform text descriptions (and optionally reference images) into authentic-looking videos.
+This is a Replicate pipeline model specializing in generating realistic videos with consistent character preservation. The model excels at maintaining character and object consistency from reference images while creating authentic-looking animated videos. It uses a three-stage pipeline that ensures character identity remains intact throughout the video generation process.
 
 ## Architecture
 

@@ -22,13 +22,13 @@ class Predictor(BasePredictor):
 
     def predict(
         self,
-        input_image: Path | None = Input(description="Optional: Upload a reference image to guide the image generation/editing process", default=None),
-        prompt: str = Input(description="Describe the image you want to create or how to modify your reference image"),
+        input_image: Path | None = Input(description="Optional: Upload a reference image to maintain character/object consistency in the generated video. The model will preserve the identity and features from this image.", default=None),
+        prompt: str = Input(description="Describe the scene or action you want. If using a reference image, the model will maintain character consistency while applying your description."),
         duration: int = Input(description="Length of the generated video", choices=[5, 10], default=5),
         resolution: str = Input(description="Video quality - choose higher for better detail", choices=["480p", "1080p"], default="1080p"),
         aspect_ratio: str = Input(description="Video format - use 16:9 for landscape, 9:16 for mobile/portrait", choices=["1:1", "16:9", "4:3", "3:4", "9:16", "21:9"], default="16:9"),
     ) -> Path:
-        """Create realistic videos by first generating/editing an image from your description, then animating it into video"""
+        """Generate consistent character videos - maintain character/object consistency from your reference image while creating realistic animated videos"""
         
         # Generate random number for IMG filename
         random_num = random.randint(0, 999)
