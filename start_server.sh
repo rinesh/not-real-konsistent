@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "🎬 Starting Real-Me Model Test Server..."
+echo "🎬 Starting Not-Real-Konsistent Model Test Server..."
 echo "======================================"
 echo ""
 echo "✅ Dependencies installed"

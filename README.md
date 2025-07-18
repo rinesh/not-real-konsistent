@@ -1,4 +1,4 @@
-# Real-Me: Realistic Video Generator
+# Not-Real-Konsistent: Realistic Video Generator
 
 Transform your ideas into realistic videos using advanced AI. This Replicate model creates authentic-looking videos by first generating or editing images based on your description, then animating them with realistic motion and style.
 
@@ -89,8 +89,8 @@ cog predict -i prompt="ocean waves" -i duration=10 -i resolution="1080p" -i aspe
 ### Setup
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/real-me.git
-cd real-me
+git clone https://github.com/yourusername/not-real-konsistent.git
+cd not-real-konsistent
 
 # Install dependencies
 pip install -r requirements-local.txt

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Local Flask app to test the real-me model pipeline
+Local Flask app to test the not-real-konsistent model pipeline
 """
 from flask import Flask, render_template, request, jsonify, send_file
 import replicate
@@ -15,13 +15,13 @@ app = Flask(__name__)
 # Configure Flask
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-class RealMePredictor:
+class NotRealKonsistentPredictor:
     def __init__(self):
         self.temp_dir = tempfile.mkdtemp()
         
     def predict(self, prompt, input_image=None, duration=5, resolution="1080p", aspect_ratio="16:9", api_token=None):
         """
-        Recreate the real-me model logic locally
+        Recreate the not-real-konsistent model logic locally
         """
         if not api_token:
             raise Exception("API token is required")
@@ -93,7 +93,7 @@ class RealMePredictor:
             }
 
 # Initialize predictor
-predictor = RealMePredictor()
+predictor = NotRealKonsistentPredictor()
 
 @app.route('/')
 def index():
@@ -191,6 +191,6 @@ def health():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
 if __name__ == '__main__':
-    print("Starting Real-Me Model Test Server...")
+    print("Starting Not-Real-Konsistent Model Test Server...")
     print("Open http://localhost:5000 in your browser")
     app.run(debug=True, host='0.0.0.0', port=5000)

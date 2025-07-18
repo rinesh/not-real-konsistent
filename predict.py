@@ -27,7 +27,7 @@ class Predictor(BasePredictor):
         duration: int = Input(description="Length of the generated video", choices=[5, 10], default=5),
         resolution: str = Input(description="Video quality - choose higher for better detail", choices=["480p", "1080p"], default="1080p"),
         aspect_ratio: str = Input(description="Video format - use 16:9 for landscape, 9:16 for mobile/portrait", choices=["1:1", "16:9", "4:3", "3:4", "9:16", "21:9"], default="16:9"),
-    ) -> List[Path]:
+    ) -> Path:
         """Create realistic videos by first generating/editing an image from your description, then animating it into video"""
         
         # Generate random number for IMG filename
@@ -82,8 +82,8 @@ class Predictor(BasePredictor):
                     with open(video_output, "rb") as vid_file:
                         f.write(vid_file.read())
             
-            # Return both image and video paths
-            return [Path(image_path), Path(video_path)]
+            # Return only the video path
+            return Path(video_path)
             
         except Exception as e:
-            raise Exception(f"Error in real-me pipeline: {str(e)}")
+            raise Exception(f"Error in not-real-konsistent pipeline: {str(e)}")

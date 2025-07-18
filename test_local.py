@@ -14,8 +14,8 @@ def test_imports():
         import replicate
         print(f"✅ Replicate imported successfully")
         
-        from app import RealMePredictor
-        print("✅ RealMePredictor imported successfully")
+        from app import NotRealKonsistentPredictor
+        print("✅ NotRealKonsistentPredictor imported successfully")
         
         return True
     except Exception as e:
@@ -46,7 +46,7 @@ def test_api_token():
         return False
 
 def main():
-    print("🧪 Real-Me Local Test Script")
+    print("🧪 Not-Real-Konsistent Local Test Script")
     print("=" * 40)
     
     if not test_imports():

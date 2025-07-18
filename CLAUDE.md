@@ -1,4 +1,4 @@
-# Real-Me Model Development Notes
+# Not-Real-Konsistent Model Development Notes
 
 ## Project Overview
 This is a Replicate pipeline model that creates realistic videos by combining image generation/editing with video animation. The model uses a three-stage pipeline to transform text descriptions (and optionally reference images) into authentic-looking videos.
@@ -14,8 +14,8 @@ This is a Replicate pipeline model that creates realistic videos by combining im
    - **SeeDANCE 1 Pro**: Animates the generated/edited image into a video with "aggressively mediocre home footage" aesthetic
 
 3. **Output Format**
-   - Returns both the intermediate image and final video for download
-   - Image output is useful for debugging and as a preview
+   - Returns only the final video for download
+   - Intermediate image is generated but not returned to reduce output size
 
 ### Technical Implementation
 - Built as a Replicate pipeline model using `replicate.use()` pattern
@@ -85,13 +85,23 @@ cog predict --use-replicate-token -i prompt="test"
 ```
 
 ### Deployment Commands
-```bash
-# Login to Replicate
-cog login
 
-# Deploy as pipeline model
-cog push --x-pipeline r8.im/username/model-name
+#### Authentication
+```bash
+# Get authentication token from:
+# https://replicate.com/signin?next=/auth/token
+
+# Login using token (non-interactive method)
+echo "YOUR_TOKEN_HERE" | cog login --token-stdin
 ```
+
+#### Model Deployment
+```bash
+# Deploy to specific model path
+cog push --x-pipeline r8.im/rinesh/not-real-konsistent
+```
+
+**Production Model URL**: https://replicate.com/rinesh/not-real-konsistent
 
 ## Future Improvements
 - Add style parameter to control video aesthetic
