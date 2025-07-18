@@ -106,6 +106,30 @@
             background: #f8f9ff;
         }
         
+        .file-input-container {
+            position: relative;
+        }
+        
+        .clear-btn {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .clear-btn:hover {
+            background: #c82333;
+        }
+        
         .btn {
             display: inline-block;
             padding: 15px 30px;
@@ -237,11 +261,14 @@
             
             <div class="form-group">
                 <label for="image">Input Image (optional)</label>
-                <div class="file-input">
-                    <input type="file" id="image" name="image" accept="image/*">
-                    <label class="file-input-label" for="image">
-                        📁 Click to select image (optional - for editing mode)
-                    </label>
+                <div class="file-input-container">
+                    <div class="file-input">
+                        <input type="file" id="image" name="image" accept="image/*">
+                        <label class="file-input-label" for="image">
+                            📁 Click to select image (optional - for editing mode)
+                        </label>
+                    </div>
+                    <button type="button" class="clear-btn" id="clearBtn">✕ Clear</button>
                 </div>
             </div>
             
@@ -379,11 +406,30 @@
         // Update file input label when file is selected
         document.getElementById('image').addEventListener('change', function(e) {
             const label = document.querySelector('.file-input-label');
+            const clearBtn = document.getElementById('clearBtn');
             if (e.target.files.length > 0) {
                 label.textContent = `📁 Selected: ${e.target.files[0].name}`;
+                clearBtn.style.display = 'block';
             } else {
                 label.textContent = '📁 Click to select image (optional - for editing mode)';
+                clearBtn.style.display = 'none';
             }
+        });
+        
+        // Clear button functionality
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            const imageInput = document.getElementById('image');
+            const label = document.querySelector('.file-input-label');
+            const clearBtn = document.getElementById('clearBtn');
+            
+            // Clear the file input
+            imageInput.value = '';
+            
+            // Reset the label text
+            label.textContent = '📁 Click to select image (optional - for editing mode)';
+            
+            // Hide the clear button
+            clearBtn.style.display = 'none';
         });
     </script>
 </body>

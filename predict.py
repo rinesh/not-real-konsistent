@@ -23,7 +23,7 @@ class Predictor(BasePredictor):
     def predict(
         self,
         input_image: Path | None = Input(description="Optional: Upload a reference image to guide the image generation/editing process", default=None),
-        prompt: str = Input(description="Describe the image you want to create or how to modify your reference image (this creates the base image that will be animated into video)"),
+        prompt: str = Input(description="Describe the image you want to create or how to modify your reference image"),
         duration: int = Input(description="Length of the generated video", choices=[5, 10], default=5),
         resolution: str = Input(description="Video quality - choose higher for better detail", choices=["480p", "1080p"], default="1080p"),
         aspect_ratio: str = Input(description="Video format - use 16:9 for landscape, 9:16 for mobile/portrait", choices=["1:1", "16:9", "4:3", "3:4", "9:16", "21:9"], default="16:9"),
